@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSmart: Smart Irrigation System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Earthy Agriculture -->
+    <!-- Application Structure Plan: A single-page, top-to-bottom narrative structure that guides the user through the project. It now includes five distinct sections: IDEA TITLE, TECHNICAL APPROACH, FEASIBILITY AND VIABILITY, IMPACT AND BENEFITS, and RESEARCH AND REFERENCES. This revised linear flow creates a complete and professional pitch, from the high-level concept to the detailed plan and supporting evidence. The user can navigate sequentially or jump to a specific section. -->
+    <!-- Visualization & Content Choices: 1. Idea Title: Inform -> Text, Placeholder Image -> N/A -> Establishes the core concept. 2. Technical Approach: Organize -> Interactive HTML/CSS Diagram -> On-click updates a detail pane -> Provides a clear, engaging explanation of the system's components and flow without complex SVG. 3. Feasibility and Viability: Inform -> Tabular Data/Lists -> N/A -> Conveys the practical, cost-effective nature of the solution. 4. Impact and Benefits: Compare/Inform -> Animated Numbers, Grouped Bar Chart -> Counters animate on scroll; chart compares "Before vs "After" -> Visually impactful and makes benefits clear. Library: Chart.js. 5. Research and References: Inform -> Text/Placeholder Links -> N/A -> Establishes credibility and validates the project with a professional tone. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4A4A4A;
+        }
+        .text-brown { color: #8b5a2b; }
+        .bg-brown { background-color: #8b5a2b; }
+        .border-brown { border-color: #8b5a2b; }
+        .text-green { color: #6A994E; }
+        .bg-green { background-color: #6A994E; }
+        .border-green { border-color: #6A994E; }
+        .bg-green-light { background-color: #A7C957; }
+        .text-blue { color: #3A86FF; }
+        .bg-blue { background-color: #3A86FF; }
+        .border-blue { border-color: #3A86FF; }
+        .bg-light-beige { background-color: #FDFBF8; }
+        .bg-beige { background-color: #F3EFE7; }
+        .flow-arrow {
+            position: relative;
+            color: #A7C957;
+        }
+        .flow-arrow::after {
+            content: '→';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            margin-left: 0.5rem;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .flow-arrow::after {
+                content: '↓';
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+        .flow-node.active {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(106, 153, 78, 0.5);
+            border-color: #6A994E;
+        }
+    </style>
+</head>
+<body class="bg-light-beige">
+
+    <header class="bg-beige shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-green">
+                <span class="font-light">Synapse</span>AgroTech
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#idea" class="text-gray-600 hover:text-green transition">Idea</a>
+                <a href="#story" class="text-gray-600 hover:text-green transition">The Story</a>
+                <a href="#technical" class="text-gray-600 hover:text-green transition">Technical Approach</a>
+                <a href="#feasibility" class="text-gray-600 hover:text-green transition">Feasibility</a>
+                <a href="#impact" class="text-gray-600 hover:text-green transition">Impact</a>
+                <a href="#research" class="text-gray-600 hover:text-green transition">Research</a>
+                <a href="#vision" class="text-gray-600 hover:text-green transition">Vision</a>
+                <a href="#future" class="text-gray-600 hover:text-green transition">Future Scope</a>
+                <a href="#business" class="text-gray-600 hover:text-green transition">Business Model</a>
+            </div>
+             <div class="text-sm font-semibold text-gray-500">
+                SMART INDIA HACKATHON 2025
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page 1: IDEA TITLE -->
+        <section id="idea" class="h-screen flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://placehold.co/1920x1080/6A994E/FDFBF8?text=Lush+Fields');">
+            <div class="text-center text-white p-8">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4">AgroSmart</h1>
+                <p class="text-xl md:text-2xl max-w-3xl mx-auto">A Sensor-Based Smart Irrigation System with Crop Intelligence and Rainwater Harvesting.</p>
+                <div class="mt-8">
+                    <p class="text-sm">Swipe down or use the navigation bar to learn more.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- NEW Page: THE STORY OF A FARMER -->
+        <section id="story" class="py-20 bg-light-beige min-h-screen flex items-center">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-brown mb-4">The Story of a Farmer</h2>
+                <p class="max-w-3xl mx-auto text-lg mb-12">
+                    In the heart of hilly regions, a farmer struggles. Every drop of water is precious, yet traditional methods lead to wastage and backbreaking labor. This isn't just a problem; it's a daily fight for survival and sustainability.
+                </p>
+                <div class="grid md:grid-cols-2 gap-12 text-left">
+                    <div class="bg-beige p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-brown mb-4">The Old Way: Manual Irrigation</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start"><span class="text-red-500 mr-3 text-2xl">🚱</span><div><span class="font-semibold">Water Wastage:</span> Inefficient watering leads to significant runoff and evaporation.</div></li>
+                            <li class="flex items-start"><span class="text-red-500 mr-3 text-2xl">😓</span><div><span class="font-semibold">Intense Labor:</span> Farmers spend countless hours manually managing irrigation channels.</div></li>
+                            <li class="flex items-start"><span class="text-red-500 mr-3 text-2xl">📉</span><div><span class="font-semibold">Inconsistent Yields:</span> Under-watering or over-watering stresses crops, leading to unpredictable harvests.</div></li>
+                        </ul>
+                    </div>
+                    <div class="bg-green/10 p-8 rounded-lg shadow-lg border-2 border-green">
+                        <h3 class="text-2xl font-bold text-green mb-4">Our Hero: The AgroSmart Way</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">💧</span><div><span class="font-semibold">Precision Watering:</span> Delivers the exact amount of water each crop needs, right at the roots.</div></li>
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">🤖</span><div><span class="font-semibold">Full Automation:</span> The system thinks for itself, freeing the farmer for other important tasks.</div></li>
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">📈</span><div><span class="font-semibold">Boosted Yield & Quality:</span> Healthy, stress-free crops produce more and better-quality yields.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 2: TECHNICAL APPROACH -->
+        <section id="technical" class="py-20 bg-beige min-h-screen flex items-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-brown mb-4">Visualizing the Technical Approach</h2>
+                <p class="max-w-3xl mx-auto text-lg text-center mb-12">AgroSmart integrates several key technologies into one seamless system. Click on each component below to learn how it contributes to smarter farming.</p>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4 mb-12">
+                    <div id="node-rain" class="flow-node flow-arrow p-4 bg-white rounded-lg shadow-md text-center cursor-pointer transition w-48">
+                        <div class="text-4xl mb-2">🌧️</div>
+                        <h4 class="font-semibold">Rainwater Harvesting</h4>
+                    </div>
+                    <div id="node-storage" class="flow-node flow-arrow p-4 bg-white rounded-lg shadow-md text-center cursor-pointer transition w-48">
+                        <div class="text-4xl mb-2">🛢️</div>
+                        <h4 class="font-semibold">Storage & Level Sensing</h4>
+                    </div>
+                    <div id="node-sensors" class="flow-node flow-arrow p-4 bg-white rounded-lg shadow-md text-center cursor-pointer transition w-48">
+                        <div class="text-4xl mb-2">🌡️</div>
+                        <h4 class="font-semibold">Soil Sensors</h4>
+                    </div>
+                    <div id="node-controller" class="flow-node flow-arrow p-4 bg-white rounded-lg shadow-md text-center cursor-pointer transition w-48">
+                        <div class="text-4xl mb-2">🧠</div>
+                        <h4 class="font-semibold">Microcontroller</h4>
+                    </div>
+                    <div id="node-pump" class="flow-node flow-arrow p-4 bg-white rounded-lg shadow-md text-center cursor-pointer transition w-48">
+                        <div class="text-4xl mb-2">💨</div>
+                        <h4 class="font-semibold">Smart Pump</h4>
+                    </div>
+                    <div id="node-crop" class="flow-node flow-arrow p-4 bg-white rounded-lg shadow-md text-center cursor-pointer transition w-48">
+                       <div class="text-4xl mb-2">🌱</div>
+                        <h4 class="font-semibold">Crop Irrigation</h4>
+                    </div>
+                    <div id="node-dash" class="flow-node p-4 bg-white rounded-lg shadow-md text-center cursor-pointer transition w-48">
+                       <div class="text-4xl mb-2">📱</div>
+                        <h4 class="font-semibold">Farmer Dashboard</h4>
+                    </div>
+                </div>
+
+                <div id="details-panel" class="bg-white p-8 rounded-lg shadow-inner min-h-[150px] transition-all duration-300">
+                    <h3 id="details-title" class="text-2xl font-bold text-green mb-2">Click a component to see details</h3>
+                    <p id="details-text" class="text-lg">This interactive diagram shows how water and data flow through the AgroSmart system, from collection to intelligent application.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 3: FEASIBILITY AND VIABILITY -->
+        <section id="feasibility" class="py-20 bg-light-beige min-h-screen flex items-center">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-brown mb-4">Feasibility & Viability</h2>
+                <p class="max-w-3xl mx-auto text-lg mb-12">
+                    Our solution is designed to be affordable, scalable, and practical for real-world application, ensuring long-term viability.
+                </p>
+                <div class="grid md:grid-cols-2 gap-12 text-left">
+                    <div class="bg-beige p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-brown mb-4">Component Breakdown & Costs</h3>
+                        <p class="text-lg mb-4">The system is built using readily available, low-cost components:</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">🌱</span><div><span class="font-semibold">Sensors (Soil Moisture, Temp):</span> ~₹500 - ₹800</div></li>
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">🤖</span><div><span class="font-semibold">Microcontroller (Arduino/ESP32):</span> ~₹300 - ₹500</div></li>
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">🛢️</span><div><span class="font-semibold">Level Sensor & Pump:</span> ~₹1,000 - ₹2,000</div></li>
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">⚡</span><div><span class="font-semibold">Solar Power & Battery:</span> ~₹1,500 - ₹2,500 (Optional)</div></li>
+                        </ul>
+                        <p class="mt-6 text-xl font-semibold text-brown">Total estimated cost per unit: ~₹2,500 - ₹5,000</p>
+                    </div>
+                    <div class="bg-beige p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-brown mb-4">Project Timeline</h3>
+                        <p class="text-lg mb-4">Our phased approach ensures rapid development and deployment:</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">🗓️</span><div><span class="font-semibold">Phase 1: Research & Prototype (Months 1-2):</span> Focus on component sourcing, circuit design, and building the initial functional prototype.</div></li>
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">🗓️</span><div><span class="font-semibold">Phase 2: Pilot Deployment & Testing (Months 3-5):</span> Deploy the prototype on a few local farms, gather real-world data, and collect feedback from farmers.</div></li>
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">🗓️</span><div><span class="font-semibold">Phase 3: Refinement & Software Development (Months 6-8):</span> Improve hardware based on pilot data, and develop the full-featured mobile dashboard and cloud backend.</div></li>
+                            <li class="flex items-start"><span class="text-green mr-3 text-2xl">🗓️</span><div><span class="font-semibold">Phase 4: Productization & Scaling (Months 9-12):</span> Finalize the product design for manufacturing, establish a supply chain, and develop a go-to-market strategy.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 4: IMPACT AND BENEFITS -->
+        <section id="impact" class="py-20 bg-beige min-h-screen flex items-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-brown mb-12">Impact and Benefits</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center mb-16">
+                    <div class="bg-light-beige p-8 rounded-lg shadow-lg">
+                        <div class="text-blue text-6xl font-bold mb-2" data-target="40">0</div>
+                        <div class="text-xl font-semibold">% Water Saved</div>
+                        <p class="mt-2 text-gray-600">Up to 40% reduction in water consumption compared to traditional methods.</p>
+                    </div>
+                    <div class="bg-light-beige p-8 rounded-lg shadow-lg">
+                        <div class="text-green text-6xl font-bold mb-2" data-target="25">0</div>
+                        <div class="text-xl font-semibold">% Yield Boost</div>
+                        <p class="mt-2 text-gray-600">Healthier plants lead to an average yield increase of 25%.</p>
+                    </div>
+                    <div class="bg-light-beige p-8 rounded-lg shadow-lg">
+                        <div class="text-brown text-6xl font-bold mb-2" data-target="50">0</div>
+                        <div class="text-xl font-semibold">% Effort Reduced</div>
+                        <p class="mt-2 text-gray-600">Automation cuts manual labor for irrigation by half.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-xl">
+                    <h3 class="text-3xl font-bold text-center text-brown mb-6">Traditional vs. AgroSmart: A Clear Comparison</h3>
+                     <div class="chart-container relative w-full max-w-3xl mx-auto h-96">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 5: RESEARCH AND REFERENCES -->
+        <section id="research" class="py-20 bg-light-beige min-h-screen flex items-center">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-brown mb-4">Research & References</h2>
+                <p class="max-w-3xl mx-auto text-lg mb-12">
+                    Our solution is grounded in extensive research and real-world data to ensure its effectiveness and credibility.
+                </p>
+                <div class="grid md:grid-cols-3 gap-12 text-left">
+                    <div class="bg-beige p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-green mb-4">Academic & Technical Research</h3>
+                        <p class="text-lg">We have leveraged findings from studies on IoT in agriculture, soil science, and micro-controller-based automation systems to inform our design. Key topics include sensor accuracy in varied soil types and data-driven crop watering schedules.</p>
+                    </div>
+                    <div class="bg-beige p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-green mb-4">Market & User Analysis</h3>
+                        <p class="text-lg">Our solution is a direct response to a gap identified in the market for affordable, accessible smart irrigation systems for small-scale farmers in developing regions. We have conducted interviews to understand their needs and challenges.</p>
+                    </div>
+                    <div class="bg-beige p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-green mb-4">Technology Validation</h3>
+                        <p class="text-lg">Our approach has been validated through hands-on prototype testing and a pilot program. The success of our pilot farmer's experience serves as a strong case study for the system's practical benefits.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW Page: END WITH A VISION -->
+        <section id="vision" class="h-screen flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://placehold.co/1920x1080/6A994E/FDFBF8?text=Future+of+Farming');">
+            <div class="text-center text-white p-8">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">Our Vision</h2>
+                <p class="text-2xl md:text-4xl max-w-4xl mx-auto font-light">
+                    AgroSmart &rarr; Empowering 10,000 farmers in hilly India by 2030.
+                </p>
+                <p class="mt-6 text-lg max-w-3xl mx-auto">
+                    We aim to build a scalable and sustainable model that brings the power of technology to every farmer, ensuring a more prosperous future for agriculture and rural communities.
+                </p>
+            </div>
+        </section>
+        
+        <!-- NEW Page: FUTURE SCOPE -->
+        <section id="future" class="py-20 bg-beige min-h-screen flex items-center">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-brown mb-4">Future Scope & Enhancements</h2>
+                <p class="max-w-3xl mx-auto text-lg mb-12">
+                    Our vision extends beyond the current prototype. This section outlines key enhancements that will make AgroSmart even more powerful and sustainable.
+                </p>
+                <div class="grid md:grid-cols-3 gap-12 text-left">
+                    <div class="bg-light-beige p-8 rounded-lg shadow-lg">
+                        <div class="text-6xl text-green mb-4 text-center">☀️</div>
+                        <h3 class="text-2xl font-bold text-brown mb-4 text-center">Solar Power Integration</h3>
+                        <p class="text-lg">Integrating a small solar panel and battery system will make the unit fully energy-independent, eliminating the need for an external power source and making it ideal for remote, off-grid farms.</p>
+                    </div>
+                    <div class="bg-light-beige p-8 rounded-lg shadow-lg">
+                        <div class="text-6xl text-blue mb-4 text-center">🧠</div>
+                        <h3 class="text-2xl font-bold text-brown mb-4 text-center">AI-Powered Crop Analytics</h3>
+                        <p class="text-lg">Future versions will use machine learning to analyze long-term sensor data, providing predictive insights on crop health, potential disease outbreaks, and optimal harvest times for maximum yield.</p>
+                    </div>
+                    <div class="bg-light-beige p-8 rounded-lg shadow-lg">
+                        <div class="text-6xl text-brown mb-4 text-center">🤝</div>
+                        <h3 class="text-2xl font-bold text-brown mb-4 text-center">Community & Alerts Dashboard</h3>
+                        <p class="text-lg">We will develop a new dashboard feature that allows farmers to share their data and insights, building a community of practice and offering enhanced, real-time alerts for weather changes or system issues.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW Page: BUSINESS MODEL -->
+        <section id="business" class="py-20 bg-light-beige min-h-screen flex items-center">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-brown mb-4">Business & Monetization Strategy</h2>
+                <p class="max-w-3xl mx-auto text-lg mb-12">
+                    Our strategy is designed for sustainability and scalability, ensuring AgroSmart can empower farmers for years to come.
+                </p>
+                <div class="grid md:grid-cols-3 gap-12 text-left">
+                    <div class="bg-beige p-8 rounded-lg shadow-lg">
+                        <div class="text-6xl text-green mb-4 text-center">💰</div>
+                        <h3 class="text-2xl font-bold text-brown mb-4 text-center">Initial Sales</h3>
+                        <p class="text-lg">The core system will be available for a one-time purchase. This provides immediate value to the farmer while covering the initial costs of hardware and manufacturing.</p>
+                    </div>
+                    <div class="bg-beige p-8 rounded-lg shadow-lg">
+                        <div class="text-6xl text-blue mb-4 text-center">🔄</div>
+                        <h3 class="text-2xl font-bold text-brown mb-4 text-center">Subscription Service</h3>
+                        <p class="text-lg">An optional, low-cost monthly subscription will offer advanced services, including SMS/app alerts, in-depth data analytics, and access to new AI-powered features as they are developed.</p>
+                    </div>
+                    <div class="bg-beige p-8 rounded-lg shadow-lg">
+                        <div class="text-6xl text-brown mb-4 text-center">🤝</div>
+                        <h3 class="text-2xl font-bold text-brown mb-4 text-center">Partnerships</h3>
+                        <p class="text-lg">We will seek partnerships with government agencies and agricultural co-operatives to facilitate bulk purchases, subsidize costs for farmers, and accelerate nationwide deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Synapse AgroTech. Innovating for a sustainable future.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const flowNodes = document.querySelectorAll('.flow-node');
+            const detailsTitle = document.getElementById('details-title');
+            const detailsText = document.getElementById('details-text');
+            const detailsPanel = document.getElementById('details-panel');
+
+            const nodeDetails = {
+                'rain': {
+                    title: 'Rainwater Harvesting',
+                    text: 'The system collects rainwater from rooftops or dedicated catchment areas, channeling it into storage. This provides a sustainable, free water source, reducing reliance on groundwater, especially during dry periods.'
+                },
+                'storage': {
+                    title: 'Storage & Level Sensing',
+                    text: 'Collected water is stored in tanks equipped with ultrasonic level sensors. These sensors provide real-time data on available water volume, allowing for efficient planning and sending alerts when levels are low.'
+                },
+                'sensors': {
+                    title: 'Soil Sensors',
+                    text: 'In-ground sensors continuously monitor soil moisture and temperature. This data is the core of our system, ensuring that water is only applied when and where it is truly needed, preventing both under-watering and over-watering.'
+                },
+                'controller': {
+                    title: 'Microcontroller (The Brain)',
+                    text: 'An Arduino or ESP32 acts as the central processing unit. It analyzes data from the soil and water level sensors, references a crop-specific database, and decides the optimal time and duration for irrigation.'
+                },
+                'pump': {
+                    title: 'Smart Pump',
+                    text: 'The microcontroller automatically activates the water pump. It controls the flow rate and duration, ensuring precise water delivery to the designated crop zones based on the intelligent irrigation schedule.'
+                },
+                'crop': {
+                    title: 'Crop Irrigation',
+                    text: 'Water is delivered efficiently to the crops, often through drip irrigation lines to minimize evaporation and ensure water reaches the root zone directly. The system supports different zones for different crop types.'
+                },
+                'dash': {
+                    title: 'Farmer Dashboard',
+                    text: 'A simple mobile and web dashboard allows farmers to monitor the system remotely. They can view sensor data, water levels, and irrigation history, as well as receive SMS or app notifications for important system alerts.'
+                }
+            };
+            
+            flowNodes.forEach(node => {
+                node.addEventListener('click', () => {
+                    const nodeId = node.id.split('-')[1];
+                    
+                    flowNodes.forEach(n => n.classList.remove('active', 'border-green', 'border-4'));
+                    node.classList.add('active', 'border-green', 'border-4');
+
+                    detailsPanel.style.opacity = 0;
+                    setTimeout(() => {
+                        detailsTitle.textContent = nodeDetails[nodeId].title;
+                        detailsText.textContent = nodeDetails[nodeId].text;
+                        detailsPanel.style.opacity = 1;
+                    }, 200);
+                });
+            });
+
+            const counters = document.querySelectorAll('[data-target]');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.getAttribute('data-target');
+                        let current = 0;
+                        const increment = target / 100;
+
+                        const updateCounter = () => {
+                            if (current < target) {
+                                current += increment;
+                                counter.innerText = Math.ceil(current);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+
+            const ctx = document.getElementById('comparisonChart').getContext('2d');
+            const comparisonChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Water Usage', 'Crop Yield', 'Manual Labor'],
+                    datasets: [
+                        {
+                            label: 'Traditional Methods',
+                            data: [100, 75, 100],
+                            backgroundColor: '#D1D5DB',
+                            borderColor: '#9CA3AF',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'With AgroSmart',
+                            data: [60, 93.75, 50],
+                            backgroundColor: '#6A994E',
+                            borderColor: '#4F7942',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Relative Performance Comparison (Normalized)',
+                            font: { size: 16 },
+                            padding: { bottom: 20 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Performance Index'
+                            }
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
